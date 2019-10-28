@@ -1,20 +1,26 @@
 const foreCast = require('./utils/forecast');
 const geoCode = require('./utils/geocode');
 
-geoCode('Bacoor', (err, data) => {
-  if (err) {
-    console.log(err);
-  } else {
-    const { lat, long } = data;
+const city = process.argv[2];
 
-    foreCast(lat, long, (err, data) => {
-      if (err) {
-        console.log(err);
-      } else {
-        const { summary, temperature, precipProbability } = data;
+if (!city) {
+  console.log('Please type a city name');
+} else {
+  geoCode(city, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      const { lat, long } = data;
 
-        console.log(`${summary} It is currently ${temperature} degrees celsius and we have ${Math.round(precipProbability * 100, 2)}% chance of rain.`);
-      }
-    });
-  }
-});
+      foreCast(lat, long, (err, data) => {
+        if (err) {
+          console.log(err);
+        } else {
+          const { summary, temperature, precipProbability } = data;
+
+          console.log(`${summary} It is currently ${temperature} degrees celsius and we have ${Math.round(precipProbability * 100, 2)}% chance of rain.`);
+        }
+      });
+    }
+  });
+}
