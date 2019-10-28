@@ -18,7 +18,7 @@ if (!city) {
         } else {
           const { summary, temperature, precipProbability } = data;
 
-          console.log(`${summary} It is currently ${temperature} degrees celsius and we have ${Math.round(precipProbability * 100, 2)}% chance of rain.`);
+          console.log(`Forecast for ${city}: ${summary} It is currently ${temperature} degrees celsius and we have ${Math.round(precipProbability * 100, 2)}% chance of rain.`);
         }
       });
     }
