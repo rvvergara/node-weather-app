@@ -10,7 +10,7 @@ if (!city) {
     if (err) {
       console.log(err);
     } else {
-      const { lat, long } = data;
+      const { lat, long, location } = data;
 
       foreCast(lat, long, (err, data) => {
         if (err) {
@@ -18,7 +18,7 @@ if (!city) {
         } else {
           const { summary, temperature, precipProbability } = data;
 
-          console.log(`Forecast for ${city}: ${summary} It is currently ${temperature} degrees celsius and we have ${Math.round(precipProbability * 100, 2)}% chance of rain.`);
+          console.log(`Forecast for ${location}: ${summary} It is currently ${temperature} degrees celsius and we have ${Math.round(precipProbability * 100, 2)}% chance of rain.`);
         }
       });
     }
